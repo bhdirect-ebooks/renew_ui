@@ -19,7 +19,3 @@ export default function loadCurrentUser() {
     "created_at": "2018-02-27T19:35:27.396Z"
   }`)
 }
-
-export function loadUserName() {
-  return JSON.parse(`{ "first_name": "Peter" }`)
-}

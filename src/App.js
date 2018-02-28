@@ -2,7 +2,7 @@ import * as R from 'ramda';
 import React from 'react';
 import { withHandlers, withState } from 'recompose';
 import { componentDidMount } from 'react-functional-lifecycle';
-import loadCurrentUser, { loadUserName } from './api';
+import loadCurrentUser from './api';
 import './App.css';
 
 const fetchUser = () =>
@@ -17,9 +17,17 @@ const App = props => (
     </header>
     <div className="profile">
       <div className="user-icon">
-        <img src={R.prop('user_icon', props.user.profile)} />
+        <img alt="user avatar" src={R.prop('user_icon', props.user.profile)} />
       </div>
       <form className="form">
+        <div className="form-group">
+          <label className="text-uppercase text-left small" for="screen-name">Screen Name</label>
+          <input className="form-control" id="screen-name" placeholder="Enter screen name" value={R.prop('screen_name', props.user.profile)}/>
+        </div>
+        <div className="form-group">
+          <label className="text-uppercase text-left small" for="email">Email</label>
+          <input type="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" value={R.prop('email', props.user.profile)}/>
+        </div>
         <div className="form-group">
           <label className="text-uppercase text-left small" for="first-name">First Name</label>
           <input id="first-name" className="form-control" type="text" value={R.prop('first_name', props.user.profile)} />
@@ -27,10 +35,6 @@ const App = props => (
         <div className="form-group">
           <label className="text-uppercase text-left small" for="first-name">Last Name</label>
           <input id="last-name" className="form-control" type="text" value={R.prop('last_name', props.user.profile)} />
-        </div>
-        <div className="form-group">
-          <label className="text-uppercase text-left small" for="email">Email</label>
-          <input type="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" value={R.prop('email', props.user.profile)}/>
         </div>
         <div className="form-group">
           <label className="text-uppercase text-left small" for="time-zone">Time Zone</label>
