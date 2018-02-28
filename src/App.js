@@ -13,31 +13,34 @@ const getUser = props => fetchUser().then(props.setUser)
 const App = props => (
   <div className="App">
     <header>
-      <h1>Welcome to Renew, {R.prop('first_name', props.user.profile)}</h1>
+      <h1 className="text-center mt-4 font-weight-light">Welcome to Renew, {R.prop('first_name', props.user.profile)}</h1>
     </header>
-    <p>
-      To get started, edit <code>src/App.js</code> and save to reload.
-    </p>
-    <form>
-      <div className="form-group">
-        <label for="first-name">First Name</label>
-        <input id="first-name" value={R.prop('first_name', props.user.profile)} />
+    <div className="profile">
+      <div className="user-icon">
+        <img src={R.prop('user_icon', props.user.profile)} />
       </div>
-      <div className="form-group">
-        <label for="first-name">Last Name</label>
-        <input id="last-name" value={R.prop('last_name', props.user.profile)} />
-      </div>
-      <div className="form-group">
-        <label for="email">Email address</label>
-        <input type="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" value={R.prop('email', props.user.profile)}/>
-        <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
-      </div>
-      <div className="form-group">
-        <label for="time-zone">Time Zone</label>
-        <input className="form-control" id="time-zone" placeholder="Time Zone" value={R.prop('time_zone', props.user.profile)} />
-      </div>
-      <button type="submit" className="btn btn-primary">Submit</button>
-    </form>
+      <form className="form">
+        <div className="form-group">
+          <label className="text-uppercase text-left small" for="first-name">First Name</label>
+          <input id="first-name" className="form-control" type="text" value={R.prop('first_name', props.user.profile)} />
+        </div>
+        <div className="form-group">
+          <label className="text-uppercase text-left small" for="first-name">Last Name</label>
+          <input id="last-name" className="form-control" type="text" value={R.prop('last_name', props.user.profile)} />
+        </div>
+        <div className="form-group">
+          <label className="text-uppercase text-left small" for="email">Email</label>
+          <input type="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" value={R.prop('email', props.user.profile)}/>
+        </div>
+        <div className="form-group">
+          <label className="text-uppercase text-left small" for="time-zone">Time Zone</label>
+          <input className="form-control" id="time-zone" placeholder="Time Zone" value={R.prop('time_zone', props.user.profile)} />
+        </div>
+        <div className="text-right full">
+          <button type="submit" className="btn btn-sm btn-dark">Save</button>
+        </div>
+      </form>
+    </div>
   </div>
 );
 

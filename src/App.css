@@ -1,6 +1,53 @@
-.App {
-  text-align: center;
-  background-color: linear-gradient(45deg, #3d4449 15%, #5f4d93 85%);
+.profile {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-gap: 10px;
+  margin: 2rem;
+  background-color: #2f323f;
+  border: 1px solid #262833;
+  border-radius: 0.25rem;
+  padding: 1.25rem;
+  color: gainsboro;
+  font-size: 0.9rem;
+  font-weight: 300;
+  letter-spacing: 0.75px;
+}
+.user-icon {
+  margin: 0.5rem auto;
+}
+
+.user-icon img {
+  border-radius: 50%;
+  width: 90px;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+}
+
+.form-control {
+  background-color: #262833;
+  border: none;
+  color: gainsboro;
+  font-size: 0.9rem;
+  font-weight: 300;
+  letter-spacing: 0.75px;
+  padding: 0.75rem;
+}
+
+.form-control:focus {
+  background-color: #262833;
+  color: gainsboro;
+  font-size: 0.9rem;
+  font-weight: 300;
+  letter-spacing: 0.75px;
+  padding: 0.75rem;
+}
+
+.full {
+  grid-column: 2 / 2;
 }
 
 .App-logo {
