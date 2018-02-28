@@ -4,7 +4,7 @@ import { withHandlers, withState } from 'recompose';
 import { componentDidMount } from 'react-functional-lifecycle';
 import loadCurrentUser from './api';
 import './App.css';
-import TimezonePicker from 'react-timezone';
+import TimezonePicker from './TimezonePicker/TimezonePicker';
 
 const fetchUser = () =>
   Promise.resolve(loadCurrentUser())
@@ -12,6 +12,12 @@ const fetchUser = () =>
 const getUser = props => fetchUser().then(props.setUser)
 
 const updateProfile = (props, property, value) => {
+  if (property === "screen_name") {
+    // ensure screen name is unique
+  }
+  if (property === "email") {
+    // validate email
+  }
   let update_user = props.user
   update_user.profile[property] = value
   props.setUser(update_user)
@@ -85,6 +91,7 @@ const App = props => (
                 placeholder: 'Select Timezone...',
                 name: 'timezone',
               }}
+              className="form-control"
             />
           </label>
         </div>
@@ -96,8 +103,19 @@ const App = props => (
   </div>
 );
 
+// using this in withState prevents this: 'Warning: A component is changing an uncontrolled input of type undefined to be controlled.'
+const empty_user = {
+  profile: {
+    time_zone: "America/Chicago",
+    screen_name: "",
+    last_name: "",
+    first_name: "",
+    email: ""
+  }
+}
+
 export default R.compose(
-  withState('user', 'setUser', {}),
+  withState('user', 'setUser', empty_user),
   withHandlers({
     getUser
   }),

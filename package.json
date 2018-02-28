@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "classnames": "^2.2.5",
     "history": "^4.7.2",
+    "prop-types": "^15.6.1",
     "ramda": "^0.25.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -12,7 +14,6 @@
     "react-router-dom": "^4.2.2",
     "react-router-redux": "^5.0.0-alpha.9",
     "react-scripts": "1.1.1",
-    "react-timezone": "^1.0.5",
     "recompose": "^0.26.0",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",

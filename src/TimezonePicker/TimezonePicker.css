@@ -1,0 +1,50 @@
+.timezone-picker {
+ display:inline-block;
+ font:300 0.9rem sans-serif;
+ position:relative
+}
+.timezone-picker-textfield input {
+ color:gainsboro;
+ width:100%;
+ font:inherit;
+ box-sizing:border-box;
+ outline:0;
+ background:#262833;
+ border:none;
+}
+.timezone-picker-list {
+ position:relative;
+ top:100%;
+ left:0;
+ right:0;
+ max-height:200px;
+ overflow-y:auto;
+ margin:0;
+ padding:0;
+ border:1px solid #262833;
+ margin-top:2px;
+ border-radius:0 0 3px 3px;
+ display:none
+}
+.timezone-picker-list-item {
+ background-color: #2f323f;
+ color:gainsboro;
+ padding:5px 12px;
+ cursor:pointer;
+ outline:none;
+ display:block;
+ border:0;
+ width:100%;
+ text-align:left;
+ border-radius:0;
+ font:inherit
+}
+.timezone-picker-list-item-active {
+ background:#383C4C
+}
+.timezone-picker-open .timezone-picker-list {
+ display:block
+}
+.timezone-picker-selected .timezone-picker-textfield input {
+ color:gainsboro
+}
