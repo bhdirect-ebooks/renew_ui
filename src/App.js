@@ -4,11 +4,23 @@ import { withHandlers, withState } from 'recompose';
 import { componentDidMount } from 'react-functional-lifecycle';
 import loadCurrentUser from './api';
 import './App.css';
+import TimezonePicker from 'react-timezone';
 
 const fetchUser = () =>
   Promise.resolve(loadCurrentUser())
 
 const getUser = props => fetchUser().then(props.setUser)
+
+const updateProfile = (props, property, value) => {
+  let update_user = props.user
+  update_user.profile[property] = value
+  props.setUser(update_user)
+}
+
+const saveProfile = (props, event) => {
+  console.log(props.user.profile)
+  event.preventDefault()
+}
 
 const App = props => (
   <div className="App">
@@ -19,26 +31,62 @@ const App = props => (
       <div className="user-icon">
         <img alt="user avatar" src={R.prop('user_icon', props.user.profile)} />
       </div>
-      <form className="form">
+      <form className="form" onSubmit={event => saveProfile(props, event)}>
         <div className="form-group">
-          <label className="text-uppercase text-left small" for="screen-name">Screen Name</label>
-          <input className="form-control" id="screen-name" placeholder="Enter screen name" value={R.prop('screen_name', props.user.profile)}/>
+          <label className="text-uppercase text-left small">
+            Screen Name
+            <input
+              className="form-control"
+              onChange={event => updateProfile(props, "screen_name", event.target.value)}
+              value={R.prop('screen_name', props.user.profile)}
+            />
+          </label>
         </div>
         <div className="form-group">
-          <label className="text-uppercase text-left small" for="email">Email</label>
-          <input type="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" value={R.prop('email', props.user.profile)}/>
+          <label className="text-uppercase text-left small">
+            Email
+            <input
+              aria-describedby="emailHelp"
+              className="form-control"
+              onChange={event => updateProfile(props, "email", event.target.value)}
+              type="email"
+              value={R.prop('email', props.user.profile)}
+            />
+          </label>
         </div>
         <div className="form-group">
-          <label className="text-uppercase text-left small" for="first-name">First Name</label>
-          <input id="first-name" className="form-control" type="text" value={R.prop('first_name', props.user.profile)} />
+          <label className="text-uppercase text-left small">
+            First Name
+            <input
+              className="form-control"
+              onChange={event => updateProfile(props, "first_name", event.target.value)}
+              value={R.prop('first_name', props.user.profile)}
+            />
+          </label>
         </div>
         <div className="form-group">
-          <label className="text-uppercase text-left small" for="first-name">Last Name</label>
-          <input id="last-name" className="form-control" type="text" value={R.prop('last_name', props.user.profile)} />
+          <label className="text-uppercase text-left small">
+            Last Name
+            <input
+              className="form-control"
+              onChange={event => updateProfile(props, "last_name", event.target.value)}
+              value={R.prop('last_name', props.user.profile)}
+            />
+          </label>
         </div>
         <div className="form-group">
-          <label className="text-uppercase text-left small" for="time-zone">Time Zone</label>
-          <input className="form-control" id="time-zone" placeholder="Time Zone" value={R.prop('time_zone', props.user.profile)} />
+          <label className="text-uppercase text-left small">
+          Time Zone
+            <TimezonePicker 
+              defaultValue="America/Chicago"
+              value={R.prop('time_zone', props.user.profile)}
+              onChange={timezone => updateProfile(props, "time_zone", timezone)}
+              inputProps={{
+                placeholder: 'Select Timezone...',
+                name: 'timezone',
+              }}
+            />
+          </label>
         </div>
         <div className="text-right full">
           <button type="submit" className="btn btn-sm btn-dark">Save</button>
