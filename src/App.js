@@ -43,6 +43,7 @@ const App = props => (
             Screen Name
             <input
               className="form-control"
+              maxLength="16"
               onChange={event => updateProfile(props, "screen_name", event.target.value)}
               value={R.prop('screen_name', props.user.profile)}
             />
@@ -54,7 +55,9 @@ const App = props => (
             <input
               aria-describedby="emailHelp"
               className="form-control"
+              maxLength="64"
               onChange={event => updateProfile(props, "email", event.target.value)}
+              required
               type="email"
               value={R.prop('email', props.user.profile)}
             />
@@ -65,6 +68,7 @@ const App = props => (
             First Name
             <input
               className="form-control"
+              maxLength="32"
               onChange={event => updateProfile(props, "first_name", event.target.value)}
               value={R.prop('first_name', props.user.profile)}
             />
@@ -75,6 +79,7 @@ const App = props => (
             Last Name
             <input
               className="form-control"
+              maxLength="32"
               onChange={event => updateProfile(props, "last_name", event.target.value)}
               value={R.prop('last_name', props.user.profile)}
             />
