@@ -120,11 +120,31 @@ const empty_user = {
   }
 }
 
+/*
+Example mapStateToProps and mapDispatchToProps from app.wsb.com
+
+const mapStateToProps = state => ({
+	openTitles: appTitlesAsUuidGuidSelector(state),
+	titles: state.library.get("titles"),
+	categories: state.library.get("categories"),
+	isSignedIn: state.account.isSignedIn,
+	firstname: state.account.profile.get("firstname"),
+	lastname: state.account.profile.get("lastname"),
+	modernizr: state.app.window.get("modernizr"),
+});
+
+const mapDispatchToProps = dispatch => ({
+	onChangeCategory: category =>
+		dispatch(AppActions.libraryChangeCategory({ category })),
+	onLibraryInit: category => dispatch(AppActions.libraryInit({ category })),
+});
+
+*/
 //const mapStateToProps = ({ user, }) => ({ user, });
-//const mapActionsToProps = { fetchUser }
+//const mapDispatchToProps = { fetchUser }
 
 const mapStateToProps = state => ({});
-const mapActionsToProps = {};
+const mapDispatchToProps = {};
 
 export default R.compose(
   withState('user', 'setUser', empty_user),
@@ -136,6 +156,6 @@ export default R.compose(
   )),
   connect(
     mapStateToProps,
-    mapActionsToProps,
+    mapDispatchToProps,
   )
 )(App);
