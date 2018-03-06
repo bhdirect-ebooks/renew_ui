@@ -28,6 +28,8 @@ const updateProfile = (props, property, value) => {
 const saveProfile = (props, event) => {
   console.log(props.user.profile)
   event.preventDefault()
+
+  props.onMyProfilePending(props.user.profile);
 }
 
 const App = props => (
@@ -103,7 +105,7 @@ const App = props => (
           </label>
         </div>
         <div className="text-right full">
-          <button type="submit" className="btn btn-sm btn-dark" onClick={() => props.onMyProfilePending()}>Save</button>
+          <button type="submit" className="btn btn-sm btn-dark" >Save</button>
         </div>
       </form>
     </div>
