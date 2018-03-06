@@ -1,5 +1,6 @@
 import * as R from 'ramda';
 import React from 'react';
+import { connect } from 'react-redux';
 import { withHandlers, withState } from 'recompose';
 import { componentDidMount } from 'react-functional-lifecycle';
 import loadCurrentUser from './api';
@@ -119,6 +120,12 @@ const empty_user = {
   }
 }
 
+//const mapStateToProps = ({ user, }) => ({ user, });
+//const mapActionsToProps = { fetchUser }
+
+const mapStateToProps = state => ({});
+const mapActionsToProps = {};
+
 export default R.compose(
   withState('user', 'setUser', empty_user),
   withHandlers({
@@ -126,5 +133,9 @@ export default R.compose(
   }),
   componentDidMount(R.compose(
     R.tap(getUser)
-  ))
+  )),
+  connect(
+    mapStateToProps,
+    mapActionsToProps,
+  )
 )(App);
