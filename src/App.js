@@ -1,17 +1,11 @@
 import * as R from 'ramda';
 import React from 'react';
 import { connect } from 'react-redux';
-import { withHandlers, withState } from 'recompose';
-import { componentDidMount } from 'react-functional-lifecycle';
-//import loadCurrentUser from './api';
+//import { withHandlers, withState } from 'recompose';
+//import { componentDidMount } from 'react-functional-lifecycle';
 import './App.css';
 import TimezonePicker from './TimezonePicker/TimezonePicker';
 import { myProfilePending } from './actions/AccountActions';
-
-//const fetchUser = () =>
-//  Promise.resolve(loadCurrentUser())
-
-//const getUser = props => fetchUser().then(props.setUser)
 
 const updateProfile = (props, property, value) => {
   if (property === "screen_name") {
@@ -115,51 +109,10 @@ const App = props => (
   </div>
 );
 
-// using this in withState prevents this: 'Warning: A component is changing an uncontrolled input of type undefined to be controlled.'
-const empty_user = {
-  profile: {
-    time_zone: "America/Chicago",
-    screen_name: "",
-    last_name: "",
-    first_name: "",
-    email: ""
-  }
-}
-
-/*
-Example mapStateToProps and mapDispatchToProps from app.wsb.com
-
-const mapStateToProps = state => ({
-	openTitles: appTitlesAsUuidGuidSelector(state),
-	titles: state.library.get("titles"),
-	categories: state.library.get("categories"),
-	isSignedIn: state.account.isSignedIn,
-	firstname: state.account.profile.get("firstname"),
-	lastname: state.account.profile.get("lastname"),
-	modernizr: state.app.window.get("modernizr"),
-});
-
-const mapDispatchToProps = dispatch => ({
-	onChangeCategory: category =>
-		dispatch(AppActions.libraryChangeCategory({ category })),
-	onLibraryInit: category => dispatch(AppActions.libraryInit({ category })),
-});
-
-*/
-//const mapStateToProps = ({ user, }) => ({ user, });
-//const mapDispatchToProps = { fetchUser }
-
-const mapStateToProps = state => ({});
+const mapStateToProps = ({ account, }) => ({ user: account.user, });
 const mapDispatchToProps = { onMyProfilePending: myProfilePending };
 
 export default R.compose(
-  withState('user', 'setUser', empty_user),
-  /*withHandlers({
-    getUser
-  }),
-  componentDidMount(R.compose(
-    R.tap(getUser)
-  )),*/
   connect(
     mapStateToProps,
     mapDispatchToProps,

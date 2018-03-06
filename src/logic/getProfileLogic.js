@@ -25,8 +25,7 @@ export default createLogic({
 
   process({ httpClient, action }, dispatch, done) {
 
-		
-		console.log('in process');
+	  //console.log('in process');
     fetchUser()
       .then((data) => {
         dispatch(myProfileSuccess(data));

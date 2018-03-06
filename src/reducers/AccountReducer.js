@@ -2,12 +2,17 @@ import * as Constants from "../constants";
 
 const defaultState = {
   initialized: false,
-  profile: {
-    time_zone: "America/Chicago",
-    screen_name: "",
-    last_name: "",
-    first_name: "",
-    email: ""
+  user: {
+    id: null,
+    created_at: null,
+    projects: [],
+    profile: {
+      time_zone: "America/Chicago",
+      screen_name: "",
+      last_name: "",
+      first_name: "",
+      email: ""
+    }
   }
 };
 
@@ -20,7 +25,7 @@ export default function(state = defaultState, action) {
 
     case Constants.ACCOUNT_MY_PROFILE_SUCCESS:
       return Object.assign({}, state, {
-        profile: action.payload.profile
+        user: action.payload
       })
 
     default:
