@@ -3,15 +3,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withHandlers, withState } from 'recompose';
 import { componentDidMount } from 'react-functional-lifecycle';
-import loadCurrentUser from './api';
+//import loadCurrentUser from './api';
 import './App.css';
 import TimezonePicker from './TimezonePicker/TimezonePicker';
 import { myProfilePending } from './actions/AccountActions';
 
-const fetchUser = () =>
-  Promise.resolve(loadCurrentUser())
+//const fetchUser = () =>
+//  Promise.resolve(loadCurrentUser())
 
-const getUser = props => fetchUser().then(props.setUser)
+//const getUser = props => fetchUser().then(props.setUser)
 
 const updateProfile = (props, property, value) => {
   if (property === "screen_name") {
@@ -105,6 +105,9 @@ const App = props => (
           </label>
         </div>
         <div className="text-right full">
+          <button type="button" className="btn btn-sm btn-light" onClick={ () => props.onMyProfilePending() }>
+						Load User
+					</button>
           <button type="submit" className="btn btn-sm btn-dark" >Save</button>
         </div>
       </form>
@@ -151,12 +154,12 @@ const mapDispatchToProps = { onMyProfilePending: myProfilePending };
 
 export default R.compose(
   withState('user', 'setUser', empty_user),
-  withHandlers({
+  /*withHandlers({
     getUser
   }),
   componentDidMount(R.compose(
     R.tap(getUser)
-  )),
+  )),*/
   connect(
     mapStateToProps,
     mapDispatchToProps,

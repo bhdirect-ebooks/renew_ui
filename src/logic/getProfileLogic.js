@@ -1,11 +1,15 @@
 import { createLogic } from "redux-logic";
 import { ACCOUNT_MY_PROFILE_PENDING } from "../constants";
 import { myProfileSuccess, myProfileError } from "../actions/AccountActions";
+import loadCurrentUser from '../api';
+
+const fetchUser = () =>
+  Promise.resolve(loadCurrentUser())
 
 export default createLogic({
   type: ACCOUNT_MY_PROFILE_PENDING,
 
-  validate({ getState, action }, allow, reject) {
+  /*validate({ getState, action }, allow, reject) {
     if (
       action.payload &&
       action.payload.firstname &&
@@ -17,9 +21,22 @@ export default createLogic({
       // empty request, silently reject
       reject();
     }
-  },
+  },*/
 
   process({ httpClient, action }, dispatch, done) {
+
+		
+		console.log('in process');
+    fetchUser()
+      .then((data) => {
+        dispatch(myProfileSuccess(data));
+      })
+      .catch(error => {
+        dispatch(myProfileError(error));
+      })
+      .then(() => done());
+
+    /*
     const postData = {
       firstname: action.payload.firstname,
       lastname: action.payload.lastname,
@@ -30,14 +47,14 @@ export default createLogic({
       .post(`/api/user/v2/profile`, postData)
       .then(() => {
         dispatch(myProfileSuccess(postData));
-        done();
       })
       .catch(error => {
         const err =
           error.response && error.response.data ? error.response.data : error;
         dispatch(myProfileError(err));
-        done();
-      });
+      })
+      .then(() => done());
+      */
   },
 });
 

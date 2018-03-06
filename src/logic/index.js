@@ -2,5 +2,5 @@
 import getProfileLogic from "./getProfileLogic";
 
 export default [
-  ...getProfileLogic,
+  getProfileLogic,
 ];
