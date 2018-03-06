@@ -6,6 +6,7 @@ import { componentDidMount } from 'react-functional-lifecycle';
 import loadCurrentUser from './api';
 import './App.css';
 import TimezonePicker from './TimezonePicker/TimezonePicker';
+import { myProfilePending } from './actions/AccountActions';
 
 const fetchUser = () =>
   Promise.resolve(loadCurrentUser())
@@ -102,7 +103,7 @@ const App = props => (
           </label>
         </div>
         <div className="text-right full">
-          <button type="submit" className="btn btn-sm btn-dark">Save</button>
+          <button type="submit" className="btn btn-sm btn-dark" onClick={() => props.onMyProfilePending()}>Save</button>
         </div>
       </form>
     </div>
@@ -144,7 +145,7 @@ const mapDispatchToProps = dispatch => ({
 //const mapDispatchToProps = { fetchUser }
 
 const mapStateToProps = state => ({});
-const mapDispatchToProps = {};
+const mapDispatchToProps = { onMyProfilePending: myProfilePending };
 
 export default R.compose(
   withState('user', 'setUser', empty_user),
